@@ -9,6 +9,6 @@ app.listen(serverPort, async() => {
     await sequelize.sync({force:true})
 })
 
-// console.log('serverPort', serverPort)
+// console.log('serverPort', serverPort);
 
 //npx sequelize model:generate --name Categories --attributes name:text,description:text

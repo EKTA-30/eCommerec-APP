@@ -1,12 +1,11 @@
 const { Products } = require("../models");
 
+//Creating product
 async function createProduct(req, res) {
   const data = req.body;
-
   if (!data.name && data.cost && data.quantity) {
     res.status(400).send({ msg: "Name, cost and quantity missing" });
   }
-
   const name = data.name;
   const description = data.description;
   const cost = data.cost;
@@ -21,6 +20,7 @@ async function createProduct(req, res) {
     res.status(500).send({ msg: "Internal server error" });
   }
 }
+//fetching all products
 async function getAllProducts(req, res) {
   try {
     const result = await Products.findAll();
@@ -30,7 +30,7 @@ async function getAllProducts(req, res) {
     res.status(500).send({ msg: "Internal server error" });
   }
 }
-
+//fetching a product by id
 async function getProductById(req, res) {
   const productId = req.params.id;
 
@@ -47,7 +47,7 @@ async function getProductById(req, res) {
     res.status(500).send({ msg: "Internal server error" });
   }
 }
-
+//updating a product details
 async function updateProduct(req, res) {
   const productId = req.params.id;
   try {
@@ -63,7 +63,6 @@ async function updateProduct(req, res) {
       result.quantity = req.body.quantity;
 
       result.save();
-
       res.send({ msg: "product got update", updateProduct: result });
     } else {
       console.log("err in getting products", err);
@@ -74,7 +73,40 @@ async function updateProduct(req, res) {
     res.status(500).send({ msg: "Internal server error" });
   }
 }
+//updating a single attribute in a product
+async function updateProductByAttribute(req, res){
+const productId = req.params.id;
+const attribute = req.query.queryValue;
+console.log(attribute);
+try{
+  const result = await Products.findOne({
+    where: {
+      id: productId,
+    },
+  });
+const attributes =['name','description','cost','quantity'];
+if(result){
+  if(attributes.includes(attribute)){
+    result.attribute = req.body.attribute;
 
+    result.save();
+    res.send({ msg: "product got update", updateProduct: result });
+  }
+  else{
+    res.status(404).send({msg:"Attribute not found"})
+    
+  }
+} else {
+    console.log("err in getting products", err);
+    res.status(400).send({ msg: "product id does not exist" });
+  }}
+catch(err){
+  console.log("err in updating product", err);
+  res.status(500).send({ msg: "Internal server error" });
+}
+}
+
+//deleting a product
 async function deleteProduct(req, res) {
   const productId = req.params.id;
   try {
@@ -97,4 +129,5 @@ module.exports = {
   getProductById,
   updateProduct,
   deleteProduct,
+  updateProductByAttribute
 };

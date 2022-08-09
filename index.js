@@ -3,7 +3,9 @@ const express = require("express");
 const { Categories, sequelize ,Products} = require("./models");
 const {categoryRoutes, productRoutes} = require('./routes')
 const app = express()
+const bodyParser = require("body-parser")
 
+// app.use(bodyParser)
 app.use(express.json())
 app.use(categoryRoutes)
 app.use(productRoutes)

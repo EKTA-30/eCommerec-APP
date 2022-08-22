@@ -5,7 +5,7 @@ async function verifyToken(req, res, next) {
   const token = req.headers["x-access-token"];
   if (token) {
     try {
-      const result = await jwt.verify(token, process.env.JWT_SECRET_KEY);
+      const result = await jwt.verify(token, 'helloIamSecretKey');
       if (result) {
         req.userId = result.id;
         next();

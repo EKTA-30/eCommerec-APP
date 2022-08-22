@@ -18,13 +18,6 @@ app.listen(serverPort, async () => {
 async function init() {
   try {
     await sequelize.sync({force:true});
-    // await Categories.sync({ force: true });
-    // name: DataTypes.TEXT,
-    // description: DataTypes.TEXT,
-    // cost: DataTypes.INTEGER,
-    // quantity:DataTypes.INTEGER
-
-    
     const defaultCategories= [
       {
         name: "Beauty",
@@ -79,23 +72,3 @@ async function init() {
     console.log(err);
   }
 }
-
-// console.log('serverPort', serverPort);
-
-//npx sequelize model:generate --name Categories --attributes name:text,description:text
-// npm init
-
-// npm install --save sequelize
-//npm install --save mysql2
-//npm install --save sequelize-cli
-//npm install --save express
-
-// Help command npx sequelize
-
-// npx sequelize init -> config, models, migrations, seeders
-
-// npx sequelize db:create ---> database created
-
-// npx sequelize model:generate --name User --attributes username:text email:text password:text
-//npx sequelize model:generate --name Post --attributes userId:integer,content:text
-// npx sequelize model:generate --name Products --attributes name:text,description:text,cost:integer

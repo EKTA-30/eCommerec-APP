@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "root",
-    "password": "passwordMySql",
-    "database": "eCommerece_development",
-    "host": "127.0.0.1",
+    "username": "ekta30",
+    "password": "Canidy@65",
+    "database": "ecommerece_app",
+    "host": "db4free.net",
     "dialect": "mysql"
   },
   "test": {
@@ -14,10 +14,10 @@
     "dialect": "mysql"
   },
   "production": {
-    "username": "root",
-    "password": null,
-    "database": "database_production",
-    "host": "127.0.0.1",
+    "username": "ekta30",
+    "password": "Canidy@65",
+    "database": "ecommerece_app",
+    "host": "db4free.net",
     "dialect": "mysql"
   }
 }
